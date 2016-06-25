@@ -32,6 +32,3 @@ new Confabulous()
 | params   | array     | []     | Parameters to be passed to query |
 | mandatory | boolean  | true   | Causes an error/reload_error to be emitted if the configuration does not exist |
 | watch     | object   |        | Configures the watcher ```{ query: 'SELECT last_modified FROM config WHERE key=$1', params: ['my-app']}```, interval: '5m' } |
-
-
-
