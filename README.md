@@ -10,10 +10,12 @@ const Confabulous = confabulous.Confabulous
 const processors = confabulous.processors
 
 new Confabulous()
-    .add((config) => postgres({ url: 'postgres://user:secret@localhost:5432/config', key: 'config' }, [
-      (rows, cb) => {
-          cb(null, rows[0].data)
-      }
+    .add((config) => postgres({
+        url: 'postgres://user:secret@localhost:5432/config',
+        query: 'SELECT data FROM config WHERE key=$1',
+        params: ['my-app']
+    }, [
+      (rows, cb) => cb(null, rows[0] && rows[0].data)
     ]))
     .on('loaded', (config) => console.log('Loaded', JSON.stringify(config, null, 2)))
     .on('reloaded', (config) => console.log('Reloaded', JSON.stringify(config, null, 2)))
