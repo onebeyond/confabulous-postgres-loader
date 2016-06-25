@@ -1,0 +1,17 @@
+sudo: required
+
+services:
+- docker
+
+language: node_js
+
+before_install:
+- docker pull postgres:latest
+- docker run -d -p 5432:5432 postgres
+
+node_js:
+  - "0.10"
+  - "0.12"
+  - "4"
+  - "5"
+  - "6"
