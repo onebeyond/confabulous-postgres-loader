@@ -7,7 +7,7 @@
     "test": "NODE_ENV=test mocha --recursive tests",
     "prepush": "npm run lint && npm test",
     "lint": "eslint .",
-    "docker": "docker run --detach --publish 5432:5432 --name confabulous-postgres postgres"
+    "docker": "docker run -d -p 5432:5432 --name confabulous-postgres postgres"
   },
   "keywords": [
     "Confabulous",

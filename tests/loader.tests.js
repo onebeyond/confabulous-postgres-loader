@@ -13,7 +13,7 @@ describe('Postgres Loader', function() {
     var client
 
     before(function(done) {
-        client = new pg.Client('postgres://postgres@localhost:5432/postgres')
+        client = new pg.Client('postgres://postgres@localhost:5000/postgres')
         client.connect(function(err) {
             if (err) return done(err)
             client.query(SETUP_SQL, [], done)
@@ -47,7 +47,7 @@ describe('Postgres Loader', function() {
     })
 
     it('should require query when mandatory', function(done) {
-        loader({ url: 'postgres://postgres@localhost:5432/postgres'})(confabulous, function(err, config) {
+        loader({ url: 'postgres://postgres@localhost:5000/postgres'})(confabulous, function(err, config) {
             assert(err)
             assert.equal(err.message, 'query is required')
             done()
@@ -55,7 +55,7 @@ describe('Postgres Loader', function() {
     })
 
     it('should require watch interval when watching', function(done) {
-        loader({ url: 'postgres://postgres@localhost:5432/postgres', query: 'SELECT data from config', watch: { }})(confabulous, function(err, config) {
+        loader({ url: 'postgres://postgres@localhost:5000/postgres', query: 'SELECT data from config', watch: { }})(confabulous, function(err, config) {
             assert(err)
             assert.equal(err.message, 'watch interval is required')
             done()
@@ -63,7 +63,7 @@ describe('Postgres Loader', function() {
     })
 
     it('should require watch query when watching', function(done) {
-        loader({ url: 'postgres://postgres@localhost:5432/postgres', query: 'SELECT data from config', watch: { interval: '1m' }})(confabulous, function(err, config) {
+        loader({ url: 'postgres://postgres@localhost:5000/postgres', query: 'SELECT data from config', watch: { interval: '1m' }})(confabulous, function(err, config) {
             assert(err)
             assert.equal(err.message, 'watch query is required')
             done()
@@ -75,7 +75,7 @@ describe('Postgres Loader', function() {
             assert.ifError(err)
 
             loader({
-                url: 'postgres://postgres@localhost:5432/postgres',
+                url: 'postgres://postgres@localhost:5000/postgres',
                 query: 'SELECT data FROM config WHERE key=$1',
                 params: ['test']
             })(confabulous, function(err, config) {
@@ -95,7 +95,7 @@ describe('Postgres Loader', function() {
     })
 
     it('should report query errors', function(done) {
-        loader({ url: 'postgres://postgres@localhost:5432/postgres', query: 'BAD SQL' })(confabulous, function(err, config) {
+        loader({ url: 'postgres://postgres@localhost:5000/postgres', query: 'BAD SQL' })(confabulous, function(err, config) {
             assert(err)
             assert(/syntax error at or near "BAD"/.test(err.message), err.message)
             done()
@@ -108,7 +108,7 @@ describe('Postgres Loader', function() {
             assert.ifError(err)
 
             loader({
-                url: 'postgres://postgres@localhost:5432/postgres',
+                url: 'postgres://postgres@localhost:5000/postgres',
                 query: 'SELECT data FROM config WHERE key=$1',
                 params: ['test'],
                 watch: {
@@ -131,7 +131,7 @@ describe('Postgres Loader', function() {
             assert.ifError(err)
 
             loader({
-                url: 'postgres://postgres@localhost:5432/postgres',
+                url: 'postgres://postgres@localhost:5000/postgres',
                 query: 'SELECT data FROM config WHERE key=$1',
                 params: ['test'],
                 watch: {
@@ -150,7 +150,7 @@ describe('Postgres Loader', function() {
     it('should emit change event when a previously missing key is created', function(done) {
 
         loader({
-            url: 'postgres://postgres@localhost:5432/postgres',
+            url: 'postgres://postgres@localhost:5000/postgres',
             query: 'SELECT data FROM config WHERE key=$1',
             params: ['test'],
             watch: {
@@ -170,7 +170,7 @@ describe('Postgres Loader', function() {
             assert.ifError(err)
 
             loader({
-                url: 'postgres://postgres@localhost:5432/postgres',
+                url: 'postgres://postgres@localhost:5000/postgres',
                 query: 'SELECT data FROM config WHERE key=$1',
                 params: ['test'],
                 watch: {
@@ -194,7 +194,7 @@ describe('Postgres Loader', function() {
             assert.ifError(err)
 
             loader({
-                url: 'postgres://postgres@localhost:5432/postgres',
+                url: 'postgres://postgres@localhost:5000/postgres',
                 query: 'SELECT data FROM config WHERE key=$1',
                 params: ['test']
             }, [
