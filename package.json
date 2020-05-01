@@ -7,7 +7,9 @@
     "test": "NODE_ENV=test mocha --recursive tests",
     "prepush": "npm run lint && npm test",
     "lint": "eslint .",
-    "docker": "docker run -d -p 5432:5432 --name confabulous-postgres postgres"
+    "docker": "docker run -d -p 5432:5432 --name confabulous-postgres postgres",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "keywords": [
     "Confabulous",
@@ -23,7 +25,8 @@
     "lodash.contains": "^2.4.3",
     "lodash.merge": "^4.4.0",
     "parse-duration": "^0.1.1",
-    "pg": "^6.0.1"
+    "pg": "^6.0.1",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",
@@ -43,5 +46,6 @@
   "bugs": {
     "url": "https://github.com/guidesmiths/confabulous-postgres-loader/issues"
   },
-  "homepage": "https://github.com/guidesmiths/confabulous-postgres-loader#readme"
+  "homepage": "https://github.com/guidesmiths/confabulous-postgres-loader#readme",
+  "snyk": true
 }
