@@ -1,3 +1,8 @@
+# ⚠️ This repository is not longer maintained ⚠️
+
+This project is not longer maintained and has been archived. More details in [One Beyond Governance Tiers](https://onebeyond-maintainers.netlify.app/governance/tiers)
+
+
 [![Build Status](https://travis-ci.org/guidesmiths/confabulous-postgres-loader.png)](https://travis-ci.org/guidesmiths/confabulous-postgres-loader)
 # Confabulous Postgres Loader
 Confabulous-Postgres-Loader is an PostgreSQL Loader for [Confabulous](https://github.com/guidesmiths/confabulous) - a hierarchical, asynchronous config loader and post processor.
